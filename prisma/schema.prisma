@@ -1,0 +1,69 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  user_id  String  @id @default(uuid())
+  name     String  @db.VarChar(255)
+  login    String  @unique @db.VarChar(255)
+  password String  @db.VarChar(255)
+  deleted  Boolean @default(false)
+  orders   Order[]
+}
+
+model Car {
+  car_id      String  @id @default(uuid())
+  brand       String  @db.VarChar(255)
+  model       String  @db.VarChar(255)
+  color       String  @db.VarChar(255)
+  plate       String  @db.VarChar(255)
+  observation String  @db.VarChar(255)
+  orders      Order[]
+  deleted     Boolean @default(false)
+}
+
+model Order {
+  order_id        String   @id @default(uuid())
+  order_number    String   @unique @db.VarChar(255)
+  order_date_time DateTime @default(now()) @db.Timestamp(3)
+  total           Float?   @db.Float
+  deleted         Boolean  @default(false)
+  car             Car[]
+  user_id         String
+  user            User     @relation(fields: [user_id], references: [user_id])
+  items           Item[]
+}
+
+model Item {
+  item_id      String  @id @default(uuid())
+  name         String  @db.VarChar(255)
+  value        Float   @db.Float
+  registration String  @unique @db.VarChar(255)
+  deleted      Boolean @default(false)
+  orders       Order[]
+}
+
+// https://www.prisma.io
+
+// npm i prisma -D
+
+// npx prisma init
+
+// npx prisma migrate dev --name initial
+
+// npm i @prisma/client
+
+// caso não consigam migrar para a base da dados de casa usar o comando npx migrate reset
+
+//npx prisma db pull
+
+//Se for preciso só att o prisma client:
+//npx prisma generate
