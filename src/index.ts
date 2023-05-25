@@ -10,6 +10,7 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
+//A função ´requestLogger´ é um middleware que imprime no console o método HTTP e a URL de uma solicitação recebida, e em seguida passa o controle para o próximo middleware ou rota.
 const requestLogger = (request: Request, _: Response, next: NextFunction) => {
   console.log(`[${request.method}] => url:: ${request.url}`);
 

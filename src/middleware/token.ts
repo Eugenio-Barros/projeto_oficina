@@ -10,6 +10,7 @@ export function verifyToken(
   response: Response,
   next: NextFunction
 ) {
+  //o código verifica se o caminho da solicitação está na lista de pontos de acesso públicos. Se estiver, a função avança para a próxima etapa. Isso permite que certos caminhos sejam acessados publicamente sem restrições.
   if (publicAcesspoints.includes(request.path)) {
     return next();
   }
@@ -25,6 +26,7 @@ export function verifyToken(
     });
   }
 
+  //serve para verificar um token de autenticação, se o token for válido, o código extrai o ID do usuário do payload do token, busca as informações do usuário com base nesse ID e, em seguida, prossegue para a próxima etapa no fluxo de execução.
   verify(token, "Secret", async (error, payload) => {
     if (error) {
       return response.status(403).json({

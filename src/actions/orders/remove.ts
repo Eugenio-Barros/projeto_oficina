@@ -1,5 +1,5 @@
-import { Request, Response } from 'express';
-import { remove, detail } from '../../services/orders';
+import { Request, Response } from "express";
+import { remove, detail } from "../../services/orders";
 
 export default async (req: Request, res: Response) => {
   const { id } = req.params;
@@ -7,7 +7,7 @@ export default async (req: Request, res: Response) => {
   if (!(await detail(id))) {
     return res.status(404).json({
       code: 404,
-      message: 'Order not found',
+      message: "Order not found",
     });
   }
 

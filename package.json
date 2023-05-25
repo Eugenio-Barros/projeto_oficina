@@ -7,9 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules src/index.ts"
   },
-  "keywords": [],
-  "author": "Eugénio Barros",
-  "license": "ISC",
   "dependencies": {
     "@prisma/client": "^4.12.0",
     "bcrypt": "^5.1.0",
