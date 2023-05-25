@@ -1,16 +1,16 @@
 import { PrismaClient } from "@prisma/client";
-import { UserInfo } from "../models/user";
+import { UsersInfo } from "../models/user";
 
 export const prisma = new PrismaClient();
 
-const create = (user: UserInfo) =>
+const create = (user: UsersInfo) =>
   prisma.user.create({
     data: {
       ...user,
     },
   });
 
-const update = (id: string, user: UserInfo) =>
+const update = (id: string, user: UsersInfo) =>
   prisma.user.update({
     where: { user_id: id },
     data: { ...user },
