@@ -38,6 +38,7 @@ export async function attemptLogin(login: string, password: string) {
   return createToken(user);
 }
 
+//A função createToken recebe um objeto user como parâmetro e retorna uma string que representa um token de autenticação. O token é criado usando a função sign que recebe um payload contendo informações como a data de expiração (exp), o login do usuário (login), e o ID do usuário (user_id). O token é gerado com base nessas informações e uma chave secreta ("Secret"). O token resultante é então retornado pela função createToken.
 function createToken(user: User): string {
   const token = sign(
     {

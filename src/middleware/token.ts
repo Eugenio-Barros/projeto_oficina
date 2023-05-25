@@ -3,6 +3,7 @@ import { verify } from "jsonwebtoken";
 import { ExtendedPayload } from "../models/token";
 import { findById } from "../services/auth";
 
+//A constante publicAccesspoints é um array que contém os caminhos de acesso público permitidos em uma aplicação. Nesse caso, os caminhos "/auth/login" e "/auth/register" são considerados públicos, o que significa que qualquer usuário pode acessá-los sem a necessidade de autenticação prévia.
 const publicAcesspoints = ["/auth/login", "/auth/register"];
 
 export function verifyToken(
